@@ -44,16 +44,12 @@
   <main>
     <section>
       <div>
-        <label>Nome:</label>
-        <input type="text" id="nome" />
+        <label>Digite a palavra:</label>
+        <input type="text" id="palavra" />
       </div>
-      <div>
-        <label>Sobrenome:</label>
-        <input type="text" id="sobrenome" />
-      </div>
-      <button id="botao">Concatenar</button>
+      <button id="botao">Analisar</button>
       <div class="result">
-        <p id="fullName"></p>
+        <p id="resultado"></p>
       </div>
     </section>
   </main>
@@ -61,16 +57,28 @@
 
     const botao = document.querySelector("#botao");
     botao.addEventListener("click", function () {
-      concatenarStrings()
+      isPalindromo()
     });
 
-    function concatenarStrings() {
-      const nome = document.querySelector("#nome");
-      const sobrenome = document.querySelector("#sobrenome");
+    function isPalindromo() {
+      const palavra = document.querySelector("#palavra").value;
+      let flag = true;
 
-      if (isEmpty(nome.value) && isEmpty(sobrenome.value) && isString(nome.value) && isString(sobrenome.value)) {
-        const fullName = document.querySelector("#fullName");
-        fullName.textContent = nome.value + ' ' + sobrenome.value
+      if (isEmpty(palavra) && isString(palavra)) {
+        
+        for(let i = 0; i < palavra.length; i++){
+          if(palavra[i].toLowerCase() !== palavra[palavra.length - (i + 1)].toLowerCase()){
+            flag = false
+            break
+          }
+        }
+
+        if(!flag){
+          document.querySelector("#resultado").textContent = "A palavra digitada NÂO é um palíndromo!!"
+        }
+        else{
+          document.querySelector("#resultado").textContent = "A palavra digitada é um palíndromo!!"
+        }
       }
     }
 
