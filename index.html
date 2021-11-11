@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    let array_numeros = [1,2,3];
+
+    function arraySum( array ){
+      let result = array_numeros.reduce((total, element)=> {
+        return total += element
+      }, 0);
+      return result
+    }
+
+    console.log(arraySum(array_numeros));
+  </script>
+</body>
+</html>
