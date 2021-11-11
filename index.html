@@ -1,78 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+
+  <style>
+    main {
+      width: 660px;
+      margin: auto;
+      padding-top: 100px;
+    }
+
+    label {
+      display: block;
+      margin-top: 12px;
+      margin-bottom: 6px;
+    }
+
+    input {
+      width: 100%;
+      height: 30px;
+      border-radius: 6px;
+    }
+
+    button {
+      padding: 12px 22px;
+      border-radius: 8px;
+      margin: 26px auto;
+      display: block;
+    }
+
+    .result {
+      border-top: 2px solid #000000;
+    }
+  </style>
+
 </head>
 
 <body>
+  <main>
+    <section>
+      <div>
+        <label>Nome:</label>
+        <input type="text" id="nome" />
+      </div>
+      <div>
+        <label>Sobrenome:</label>
+        <input type="text" id="sobrenome" />
+      </div>
+      <button id="botao">Concatenar</button>
+      <div class="result">
+        <p id="fullName"></p>
+      </div>
+    </section>
+  </main>
   <script>
 
-    // con new Set
-    const primeiro_array = [1, 2];
-    const segundo_array = [2, 3, 4];
+    const botao = document.querySelector("#botao");
+    botao.addEventListener("click", function () {
+      concatenarStrings()
+    });
 
-    function arrayMerge(arr1, arr2) {
-      const concat_array = arr1.concat(arr2);
-      return [...new Set(concat_array)];
+    function concatenarStrings() {
+      const nome = document.querySelector("#nome");
+      const sobrenome = document.querySelector("#sobrenome");
+      
+      const fullName = document.querySelector("#fullName");
+      fullName.textContent = nome.value +' '+ sobrenome.value
     }
-
-    const result = arrayMerge(primeiro_array, segundo_array);
-    console.log(result)
-
-
-    // Com filter
-    const primeiro_array = [1, 2];
-    const segundo_array = [2, 3, 4];
-
-    function arrayMerge(arr1, arr2) {
-      const concat_array = arr1.concat(arr2);
-      const new_array = concat_array.filter((element, index) => {
-        return concat_array.indexOf(element) === index;
-      });
-
-      return new_array
-    }
-
-    const result = arrayMerge(primeiro_array, segundo_array);
-    console.log(result)
-
-    //Com for
-
-    const primeiro_array = [1, 2];
-    const segundo_array = [2, 3, 4];
-
-    function arrayMerge(arr1, arr2) {
-      const concat_array = arr1.concat(arr2);
-      const new_array = [];
-
-      for (let i = 0; i < concat_array.length; i++) {
-        let flag_repetido = false;
-
-        for (let y = i + 1; y < concat_array.length; y++) {
-
-          if (concat_array[i] === concat_array[y]) {
-            flag_repetido = true
-            break
-          }
-
-        }
-
-        if (!flag_repetido) {
-          new_array.push(concat_array[i])
-        }
-
-      }
-
-      return new_array
-    }
-
-    const result = arrayMerge(primeiro_array, segundo_array);
-    console.log(result)
-
   </script>
 </body>
 
