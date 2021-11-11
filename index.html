@@ -1,24 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
   <script>
 
-    let array_numeros = [1,2,3];
+    // con new Set
+    const primeiro_array = [1, 2];
+    const segundo_array = [2, 3, 4];
 
-    function arraySum( array ){
-      let result = array_numeros.reduce((total, element)=> {
-        return total += element
-      }, 0);
-      return result
+    function arrayMerge(arr1, arr2) {
+      const concat_array = arr1.concat(arr2);
+      return [...new Set(concat_array)];
     }
 
-    console.log(arraySum(array_numeros));
+    const result = arrayMerge(primeiro_array, segundo_array);
+    console.log(result)
+
+
+    // Com filter
+    const primeiro_array = [1, 2];
+    const segundo_array = [2, 3, 4];
+
+    function arrayMerge(arr1, arr2) {
+      const concat_array = arr1.concat(arr2);
+      const new_array = concat_array.filter((element, index) => {
+        return concat_array.indexOf(element) === index;
+      });
+
+      return new_array
+    }
+
+    const result = arrayMerge(primeiro_array, segundo_array);
+    console.log(result)
+
+    //Com for
+
+    const primeiro_array = [1, 2];
+    const segundo_array = [2, 3, 4];
+
+    function arrayMerge(arr1, arr2) {
+      const concat_array = arr1.concat(arr2);
+      const new_array = [];
+
+      for (let i = 0; i < concat_array.length; i++) {
+        let flag_repetido = false;
+
+        for (let y = i + 1; y < concat_array.length; y++) {
+
+          if (concat_array[i] === concat_array[y]) {
+            flag_repetido = true
+            break
+          }
+
+        }
+
+        if (!flag_repetido) {
+          new_array.push(concat_array[i])
+        }
+
+      }
+
+      return new_array
+    }
+
+    const result = arrayMerge(primeiro_array, segundo_array);
+    console.log(result)
+
   </script>
 </body>
+
 </html>
