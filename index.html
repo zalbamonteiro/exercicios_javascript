@@ -67,10 +67,32 @@
     function concatenarStrings() {
       const nome = document.querySelector("#nome");
       const sobrenome = document.querySelector("#sobrenome");
-      
-      const fullName = document.querySelector("#fullName");
-      fullName.textContent = nome.value +' '+ sobrenome.value
+
+      if (isEmpty(nome.value) && isEmpty(sobrenome.value) && isString(nome.value) && isString(sobrenome.value)) {
+        const fullName = document.querySelector("#fullName");
+        fullName.textContent = nome.value + ' ' + sobrenome.value
+      }
     }
+
+    function isEmpty(val) {
+      if (val === "") {
+        alert("Campo é obrigatório")
+        return false
+      }
+
+      return true
+    }
+
+    function isString(val) {
+      const number = parseInt(val)
+      if (isNaN(number)) {
+        return true
+      }
+
+      alert("Campo é um númerico");
+      return false
+    }
+
   </script>
 </body>
 
