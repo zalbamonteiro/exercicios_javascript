@@ -8,6 +8,10 @@
   <title>Document</title>
 
   <style>
+    h2{
+      font-family: sans-serif;
+      text-align: center;
+    }
     main {
       width: 660px;
       margin: auto;
@@ -29,13 +33,19 @@
     button {
       padding: 12px 22px;
       border-radius: 8px;
-      margin: 26px auto;
       display: block;
     }
 
-    .result {
-      border-top: 2px solid #000000;
+    .dolar-box{
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
     }
+
+    .dolar-box div{
+      width: 80%;
+    }
+
   </style>
 
 </head>
@@ -43,13 +53,18 @@
 <body>
   <main>
     <section>
-      <div>
-        <label>Digite a palavra:</label>
-        <input type="text" id="palavra" />
+      <h2>Conversor de Moeda</h2>
+      <div class="dolar-box">
+        <div>
+          <label>Valor em dolar (USD)</label>
+          <input type="text" id="dollar" />
+        </div>
+        <button id="botao">Converter</button>
       </div>
-      <button id="botao">Analisar</button>
+      
       <div class="result">
-        <p id="resultado"></p>
+        <label>Valor em real (BR)</label>
+        <input type="text" id="real" readonly/>
       </div>
     </section>
   </main>
@@ -57,28 +72,21 @@
 
     const botao = document.querySelector("#botao");
     botao.addEventListener("click", function () {
-      isPalindromo()
+      converDollar()
     });
 
-    function isPalindromo() {
-      const palavra = document.querySelector("#palavra").value;
-      let flag = true;
+    function converDollar() {
+      const val = document.querySelector("#dollar").value;
+      const dolar = val.replace(',','.');
 
-      if (isEmpty(palavra) && isString(palavra)) {
-        
-        for(let i = 0; i < palavra.length; i++){
-          if(palavra[i].toLowerCase() !== palavra[palavra.length - (i + 1)].toLowerCase()){
-            flag = false
-            break
-          }
-        }
 
-        if(!flag){
-          document.querySelector("#resultado").textContent = "A palavra digitada NÂO é um palíndromo!!"
-        }
-        else{
-          document.querySelector("#resultado").textContent = "A palavra digitada é um palíndromo!!"
-        }
+
+      if (isEmpty(dolar) && isNumber(dolar)) {
+        let dolar_hoje = 5.50;
+        const real = dolar_hoje * dolar
+
+        document.querySelector("#real").value = real.toFixed(2).toString().replace('.',',');
+
       }
     }
 
@@ -91,9 +99,9 @@
       return true
     }
 
-    function isString(val) {
+    function isNumber(val) {
       const number = parseInt(val)
-      if (isNaN(number)) {
+      if (!isNaN(number)) {
         return true
       }
 
